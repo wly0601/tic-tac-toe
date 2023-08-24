@@ -12,12 +12,16 @@
 
 <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
 <body class="bg-[#FEFAE5]">
-  <div class="md:container text-black h-full border-2 border-[#283618] rounded-lg p-4 my-3 m-auto">
-    <h1 class="text-center text-5xl my-5"> Tic Tac Toe </h1>
-      <div id="main" class="text-6xl grid grid-cols-3 m-auto mt-[50px] aspect-square min-w-min max-w-[380px] bg-[#bbb]">
+  <div class="grid h-full grid-cols-1 lg:grid-cols-3 gap-1 md:gap-3 md:mx-3">
+    <div class="md:container lg:col-span-2 text-black border-2 border-[#283618] rounded-lg p-4 md:my-3 mx-2 md:m-auto">
+      <h1 class="text-center text-5xl my-5"> Tic Tac Toe </h1>
+      <div id="main" class="text-6xl leading-[0] grid grid-cols-3 m-auto mt-[50px] aspect-square min-w-min max-w-[380px]">
       </div>
 
-<button id="game-over" type="button" class="flex text-white mx-auto rounded-full bg-blue-800 py-2 px-5 mt-5 hidden" onclick="restart()"> Click to Restart </button>
+      <button id="game-over" type="button" class="flex text-white mx-auto rounded-full bg-blue-800 py-2 px-5 mt-5 hidden" onclick="restart()"> Click to Restart </button>
+    </div>
+    <div class="md:container text-black border-2 border-[#283618] rounded-lg p-4 mb-2 md:my-3 mx-2 md:m-auto">
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
