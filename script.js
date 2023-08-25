@@ -6,6 +6,10 @@ var currentPlayer = Math.floor(Math.random(players.length))
 var board = [['','',''],['','',''],['','','']]
 
 window.onload = function() {
+	players.map((item) => {
+		const history = localStorage.getItem(item.toLowerCase()) || 0
+		document.getElementById(`${item.toLowerCase()}-win-counter`).textContent = `${history}`
+	})
 	populateBoard()
 }
 
@@ -16,6 +20,13 @@ function restart() {
 	document.getElementById("game-over").style.display = "none"
 	document.getElementById("main").innerHTML = ""
 	populateBoard()
+}
+
+function clearHistory() {
+	players.map((item) => {
+		const history = localStorage.removeItem(item.toLowerCase())
+		document.getElementById(`${item.toLowerCase()}-win-counter`).textContent = `0`
+	})
 }
 
 function checkWinner(step, board){
@@ -39,13 +50,13 @@ function checkWinner(step, board){
 	if (winner == null && step === 9){
 		step = 0
 		gameOver = true
-		return 'IMBANG!';
+		return 'DRAW!';
 	} 
 
 	if (winner) {
 		step = 0
 		gameOver = true
-		return `${winner} MENANG!`
+		return winner
 	}
 }
 
@@ -63,6 +74,14 @@ function setCell() {
 	
 	if(result) { 
 		document.getElementById("game-over").style.display = "block"
+		if(result !== 'DRAW!'){
+			const res = result.toLowerCase()
+			const counterTag = `${res}-win-counter`
+			const currentCount = document.getElementById(counterTag).innerText.split(" ")[0]
+			const nextCount = parseInt(currentCount) + 1
+			document.getElementById(counterTag).textContent = `${nextCount}`
+			localStorage.setItem(res, nextCount)
+		}
 	}
 }
 
