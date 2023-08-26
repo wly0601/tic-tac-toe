@@ -1,4 +1,4 @@
-<!DOCTYPE html lang="en">
+<html lang="en">
 <head>
   <title> Tic-Tac-Toe </title>
   <meta charset="utf-8">
@@ -7,22 +7,22 @@
   <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
-  <script src="script.js"> </script>
-  <script src="listener.js"> </script>
+  <script src="./scripts/script.js"> </script>
+  <script src="./scripts/listener.js"> </script>
 </head>
 
 <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
 <body class="bg-[#FEFAE5]">
   <div class="grid h-full grid-cols-1 lg:grid-cols-3 gap-1 md:gap-5 md:mx-3">
-    <div class="md:container lg:col-span-2 text-black border-2 border-[#283618] rounded-lg p-4 md:my-3 mt-2 mx-2 md:m-auto">
+    <div class="md:container lg:col-span-2 text-black border-2 border-[#283618] rounded-lg min-h-[600px] p-4 md:my-3 mt-2 mx-2 md:m-auto">
       <h1 class="text-center text-5xl my-5"> Tic Tac Toe </h1>
-      <div id="main" class="text-6xl leading-[0] grid grid-cols-3 m-auto mt-[50px] aspect-square min-w-min max-w-[380px]">
+      <div id="main" class="text-6xl px-3 leading-[0] grid grid-cols-3 m-auto mt-[50px] aspect-square min-w-min max-w-[380px]">
       </div>
 
       <button id="game-over" type="button" class="flex text-white mx-auto rounded-full bg-blue-800 py-2 px-5 mt-5 hidden" onclick="restart()"> Click to Restart </button>
     </div>
 
-    <div id="sidebar-menu" class="md:container text-black border-2 border-[#283618] rounded-lg p-4 mb-2 md:my-3 mx-2 md:m-auto">
+    <div id="sidebar-menu" class="md:container text-black border-2 border-[#283618] rounded-lg p-4 my-2 md:my-3 mx-2 md:m-auto">
       <h1 class="text-left text-2xl font-semibold my-2"> Game Mode : 
         <span id="text-game-mode" class="leading-[0] text-blue-800 font-semibold">
           Offline
@@ -52,9 +52,12 @@
       <div id="vs-ai-settings" class="mt-5 mb-2 hidden"> 
         <h1 class="text-left text-2xl font-semibold mb-2"> AI Settings </h1>
         <hr class="h-[3px] bg-[#000]">
-        <div class="px-3">
-          <div class="relative z-0 my-5">
-            <h1 class="text-xl text-blue-800 font-medium"> TEST </h1>
+        <div class="my-4 px-3 py-1">
+          <h1 for="steps-range" class="mb-4 font-medium text-xl text-blue-800"> Difficulty : <span id="ai-difficulty"> Medium </span></h1>
+          <input id="set-difficulty" type="range" min="1" max="5" value="3" step="1" oninput="setDifficultyText()" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer shadow">
+          <div class="grid grid-cols-2 font-medium"> 
+            <p class="text-stone-800"> Baby </p>
+            <p class="text-red-900 text-right"> Imposible </p>
           </div>
         </div>
       </div>

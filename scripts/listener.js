@@ -30,3 +30,10 @@ function handlerBtnLobby(button) {
 	document.getElementById(currentState).classList.add("hidden")
 	document.getElementById(nextState).classList.remove("hidden")
 }
+
+function setDifficultyText() {
+	const diff = ['Baby', 'Easy', 'Medium', 'Hard', 'Imposible']
+	console.log('test')
+	const value = parseInt(document.getElementById("set-difficulty").value)
+	document.getElementById("ai-difficulty").textContent = diff[value - 1]
+}
