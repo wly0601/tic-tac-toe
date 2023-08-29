@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <title> Tic-Tac-Toe </title>
@@ -7,8 +8,10 @@
   <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+  <script type="module" src="./scripts/main.js" defer> </script>
+<!--   <script src="./scripts/minimax.js"> </script>
   <script src="./scripts/script.js"> </script>
-  <script src="./scripts/listener.js"> </script>
+  <script src="./scripts/listener.js"> </script> -->
 </head>
 
 <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
@@ -16,10 +19,10 @@
   <div class="grid h-full grid-cols-1 lg:grid-cols-3 gap-1 md:gap-5 md:mx-3">
     <div class="md:container lg:col-span-2 text-black border-2 border-[#283618] rounded-lg min-h-[600px] p-4 md:my-3 mt-2 mx-2 md:m-auto">
       <h1 class="text-center text-5xl my-5"> Tic Tac Toe </h1>
-      <div id="main" class="text-6xl px-3 leading-[0] grid grid-cols-3 m-auto mt-[50px] aspect-square min-w-min max-w-[380px]">
+      <div id="main" class="text-7xl px-3 leading-[0] grid grid-cols-3 m-auto mt-[50px] aspect-square min-w-min max-w-[380px]">
       </div>
 
-      <button id="game-over" type="button" class="flex text-white mx-auto rounded-full bg-blue-800 py-2 px-5 mt-5 hidden" onclick="restart()"> Click to Restart </button>
+      <button id="game-over" type="button" class="flex text-white mx-auto rounded-full bg-blue-800 py-2 px-5 mt-5 hidden"> Click to Restart </button>
     </div>
 
     <div id="sidebar-menu" class="md:container text-black border-2 border-[#283618] rounded-lg p-4 my-2 md:my-3 mx-2 md:m-auto">
@@ -29,10 +32,10 @@
         </span>
       </h1>
       <hr class="h-[3px] bg-[#000]">
-      <div class="grid grid-cols-3 mb-4">
-        <button id="btn-offline" type="button" class="flex delay-75 bg-blue-800 text-white text-black hover:bg-blue-700 hover:text-white mx-auto rounded-lg py-2 font-semibold tracking-wider px-5 mt-5" onclick="modeHandlerText(this)"> Offline </button>
-        <button id="btn-vs-ai" type="button" class="flex delay-75 text-black hover:bg-blue-700 hover:text-white mx-auto rounded-lg py-2 font-semibold tracking-wider px-5 mt-5" onclick="modeHandlerText(this)"> VS AI </button>
-        <button id="btn-online" type="button" class="flex delay-75 text-black hover:bg-blue-700 hover:text-white mx-auto rounded-lg py-2 font-semibold tracking-wider px-5 mt-5" onclick="modeHandlerText(this)"> Online </button>
+      <div id="btns-game-option" class="grid grid-cols-3 mb-4">
+        <button id="btn-offline" type="button" class="flex delay-75 bg-blue-800 text-white text-black hover:bg-blue-700 hover:text-white mx-auto rounded-lg py-2 font-semibold tracking-wider px-5 mt-5"> Offline </button>
+        <button id="btn-vs-ai" type="button" class="flex delay-75 text-black hover:bg-blue-700 hover:text-white mx-auto rounded-lg py-2 font-semibold tracking-wider px-5 mt-5"> VS AI </button>
+        <button id="btn-online" type="button" class="flex delay-75 text-black hover:bg-blue-700 hover:text-white mx-auto rounded-lg py-2 font-semibold tracking-wider px-5 mt-5"> Online </button>
       </div>
 
       <div id="offline-settings" class="mt-5 mb-2"> 
@@ -44,7 +47,7 @@
             <p class="text-stone-600 font-bold"> X win : <span id="x-win-counter" class="text-stone-800"> </span> </p>
             <p class="text-stone-600 font-bold"> O win : <span id="o-win-counter" class="text-stone-800"> </span> </p>
 
-            <button id="btn-clear-history" type="button" class="flex delay-75 bg-red-500 hover:bg-red-400 text-white mx-auto rounded-lg font-semibold tracking-wider px-5 py-2 mt-2" onclick="clearHistory()"> Clear </button>
+            <button id="btn-clear-history" type="button" class="flex delay-75 bg-red-500 hover:bg-red-400 text-white mx-auto rounded-lg font-semibold tracking-wider px-5 py-2 mt-2"> Clear </button>
           </div>
         </div>
       </div>
@@ -57,7 +60,7 @@
           <input id="set-difficulty" type="range" min="1" max="5" value="3" step="1" oninput="setDifficultyText()" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer shadow">
           <div class="grid grid-cols-2 font-medium"> 
             <p class="text-stone-800"> Baby </p>
-            <p class="text-red-900 text-right"> Imposible </p>
+            <p class="text-red-900 text-right"> Impossible </p>
           </div>
         </div>
       </div>
@@ -76,13 +79,13 @@
             <label for="default_standard" class="absolute text-md text-gray-700 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left peer-focus:text-blue-700 peer-focus:font-semibold peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"> Room ID </label>
 
             <div id="btns-lobby" class="flex text-center justify-items-center">
-              <button id="btn-create-room" type="button" class="delay-75 bg-blue-800 hover:bg-blue-700 text-white mx-auto rounded-lg p-2 font-semibold tracking-wider px-5 mt-5" onclick="handlerBtnLobby('lobby')"> Create Room </button>
-              <button id="btn-join-room" type="button" class="delay-75 bg-lime-900 hover:bg-lime-700 text-white mx-auto rounded-lg p-2 font-semibold tracking-wider px-5 mt-5" onclick="handlerBtnLobby('lobby')"> Join Room </button>
+              <button id="btn-create-room" type="button" class="delay-75 bg-blue-800 hover:bg-blue-700 text-white mx-auto rounded-lg p-2 font-semibold tracking-wider px-5 mt-5"> Create Room </button>
+              <button id="btn-join-room" type="button" class="delay-75 bg-lime-900 hover:bg-lime-700 text-white mx-auto rounded-lg p-2 font-semibold tracking-wider px-5 mt-5"> Join Room </button>
             </div>
 
             <div id="btns-in-game" class="flex text-center justify-items-center hidden">
-              <button id="btn-ready" type="button" class="delay-75 bg-blue-800 hover:bg-blue-700 text-white mx-auto rounded-lg p-2 font-semibold tracking-wider px-5 mt-5"  onclick="handlerBtnLobby('in-game')"> Ready </button>
-              <button id="btn-exit" type="button" class="delay-75 bg-red-900 hover:bg-red-700 text-white mx-auto rounded-lg p-2 font-semibold tracking-wider px-5 mt-5" onclick="handlerBtnLobby('in-game')"> Exit Room </button>
+              <button id="btn-ready" type="button" class="delay-75 bg-blue-800 hover:bg-blue-700 text-white mx-auto rounded-lg p-2 font-semibold tracking-wider px-5 mt-5"> Ready </button>
+              <button id="btn-exit" type="button" class="delay-75 bg-red-900 hover:bg-red-700 text-white mx-auto rounded-lg p-2 font-semibold tracking-wider px-5 mt-5"> Exit Room </button>
             </div>
           </div>
         </div>
